@@ -143,22 +143,6 @@ class App extends React.Component {
     };
   }
 
-  // changeModeToEdit = (componentMode) => {
-  //   const tempModes = { ...this.state.modes };
-  //   tempModes[componentMode].isEdit = true;
-  //   this.setState({
-  //     modes: tempModes
-  //   });
-  // };
-
-  // changeModeToNonEdit = (componentMode) => {
-  //   const tempModes = { ...this.state.modes };
-  //   tempModes[componentMode].isEdit = false;
-  //   this.setState({
-  //     modes: tempModes
-  //   });
-  // };
-
   changeAppMode = (component, boolean) => {
     const tempModes = { ...this.state.modes };
     tempModes[component].isEdit = boolean;
@@ -215,10 +199,6 @@ class App extends React.Component {
     });
   };
 
-  // findClickedTargetDatakey = (element) => {
-  //   return element.closest('form').getAttribute('datakey');
-  // };
-
   handleUserInfoUpdateBtn = (element) => {
     const datakey = element.closest('form').getAttribute('datakey');
     const textUserInfoComponent = this.state.textDisplay.textUserInfoComponent;
@@ -248,48 +228,6 @@ class App extends React.Component {
       modes: tempModes
     });
   };
-
-  // changeWorkExperienceMode = (boolean) => {
-  //   const tempModes = { ...this.state.modes };
-  //   const tempInputs = { ...this.state.inputs };
-  //   this.changeAllModesToNonEditExceptApp();
-  //   this.changeUserInfoModeNonEdit();
-  //   tempModes.workExperienceMode.isEdit = boolean;
-  //   for (const property in tempInputs.workExperienceComponentInput) {
-  //     tempInputs.workExperienceComponentInput[property] = '';
-  //   }
-  //   this.setState({
-  //     modes: tempModes
-  //   });
-  // };
-
-  // changeEducationMode = (boolean) => {
-  //   const tempModes = { ...this.state.modes };
-  //   const tempInputs = { ...this.state.inputs };
-  //   this.changeAllModesToNonEditExceptApp();
-  //   this.changeUserInfoModeNonEdit();
-  //   tempModes.educationMode.isEdit = boolean;
-  //   for (const property in tempInputs.educationComponentInput) {
-  //     tempInputs.educationComponentInput[property] = '';
-  //   }
-  //   this.setState({
-  //     modes: tempModes
-  //   });
-  // };
-
-  // changeSkillsMode = (boolean) => {
-  //   const tempModes = { ...this.state.modes };
-  //   const tempInputs = { ...this.state.inputs };
-  //   this.changeAllModesToNonEditExceptApp();
-  //   this.changeUserInfoModeNonEdit();
-  //   tempModes.skillsMode.isEdit = boolean;
-  //   for (const property in tempInputs.skillsComponentInput) {
-  //     tempInputs.skillsComponentInput[property] = '';
-  //   }
-  //   this.setState({
-  //     modes: tempModes
-  //   });
-  // };
 
   addNewExperience = () => {
     const tempArr = { ...this.state.componentsArray };
@@ -433,7 +371,6 @@ class App extends React.Component {
           changeComponentMode={this.changeComponentMode}
           addNewExperience={this.addNewExperience}
           removeWorkExperience={this.removeWorkExperience}
-          // changeWorkExperienceMode={this.changeWorkExperienceMode}
         />
         <Education
           modes={modes}
@@ -443,7 +380,6 @@ class App extends React.Component {
           changeComponentMode={this.changeComponentMode}
           addNewEducation={this.addNewEducation}
           removeEducation={this.removeEducation}
-          // changeEducationMode={this.changeEducationMode}
         />
         <Skills
           modes={modes}
@@ -453,7 +389,6 @@ class App extends React.Component {
           changeComponentMode={this.changeComponentMode}
           addNewSkill={this.addNewSkill}
           removeSkill={this.removeSkill}
-          // changeSkillsMode={this.changeSkillsMode}
         />
       </div>
     );

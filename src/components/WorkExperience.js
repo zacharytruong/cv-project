@@ -32,10 +32,6 @@ class ExperienceHistoryRow extends Component {
 }
 
 class AddExperienceForm extends Component {
-  // changeWorkExperienceMode = (e) => {
-  //   e.preventDefault();
-  //   this.props.changeWorkExperienceMode(false);
-  // };
   changeComponentMode = (e) => {
     e.preventDefault();
     this.props.changeComponentMode(this.props.componentModeName, false);
@@ -108,7 +104,7 @@ class AddExperienceForm extends Component {
           value={inputCompanyJobDescription}
           onChange={this.handleInputChange}
         ></textarea>
-        <button type="submit" onClick={/* this.changeWorkExperienceMode */this.changeComponentMode}>
+        <button type="submit" onClick={this.changeComponentMode}>
           Cancel
         </button>
         <button type="submit" onClick={this.addNewExperience}>
@@ -121,10 +117,9 @@ class AddExperienceForm extends Component {
 
 class AddExperienceBtn extends Component {
   changeComponentMode = () => this.props.changeComponentMode(this.props.componentModeName, true);
-  // changeWorkExperienceMode = () => this.props.changeWorkExperienceMode(true);
   render() {
     return (
-      <button onClick={/* this.changeWorkExperienceMode */this.changeComponentMode}>+ Experience</button>
+      <button onClick={this.changeComponentMode}>+ Experience</button>
     );
   }
 }
@@ -135,9 +130,6 @@ class WorkExperience extends Component {
     this.componentModeName = 'workExperienceMode';
     this.componentInputName = 'workExperienceComponentInput';
   }
-  // changeWorkExperienceMode = (boolean) => {
-  //   this.props.changeWorkExperienceMode(boolean);
-  // };
   changeComponentMode = (component, boolean) => {
     this.props.changeComponentMode(component, boolean);
   };
@@ -169,7 +161,6 @@ class WorkExperience extends Component {
         <AddExperienceBtn
         componentModeName={this.componentModeName}
         changeComponentMode={this.changeComponentMode}
-        // changeWorkExperienceMode={this.changeWorkExperienceMode}
         />
       );
     }
@@ -183,7 +174,6 @@ class WorkExperience extends Component {
           handleInputChange={this.handleInputChange}
           addNewExperience={this.addNewExperience}
           removeWorkExperience={this.removeWorkExperience}
-          // changeWorkExperienceMode={this.changeWorkExperienceMode}
         />
       );
     }

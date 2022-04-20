@@ -20,17 +20,6 @@ class SkillList extends Component {
 }
 
 class AddSkillForm extends Component {
-  // changeComponentMode = (e) => {
-  //   e.preventDefault();
-  //   this.props.changeComponentMode(this.props.componentModeName, false);
-  // };
-  // handleInputChange = (e) => {
-  //   this.props.handleInputChange(
-  //     this.props.componentInputName,
-  //     e.target.name,
-  //     e.target.value
-  //   );
-  // };
   handleInputChange = (e) => {
     let target = e.target.name;
     let inputText = e.target.value;
@@ -60,9 +49,8 @@ class AddSkillForm extends Component {
 
 class AddSkillBtn extends Component {
   changeComponentMode = () => this.props.changeComponentMode(this.props.componentModeName, true);
-  // changeSkillsMode = () => this.props.changeSkillsMode(true);
   render() {
-    return <button onClick={/* this.changeSkillsMode */this.changeComponentMode}>+ Skill</button>;
+    return <button onClick={this.changeComponentMode}>+ Skill</button>;
   }
 }
 
@@ -72,7 +60,6 @@ class Skills extends Component {
     this.componentModeName = 'skillsMode';
     this.componentInputName = 'skillsComponentInput';
   }
-  // changeSkillsMode = (boolean) => this.props.changeSkillsMode(boolean);
   changeComponentMode = (component, boolean) => {
     this.props.changeComponentMode(component, boolean);
   };
@@ -100,7 +87,6 @@ class Skills extends Component {
         <AddSkillBtn
         componentModeName={this.componentModeName}
         changeComponentMode={this.changeComponentMode}
-        /* changeSkillsMode={this.changeSkillsMode} */
         />
       );
     }
@@ -112,8 +98,6 @@ class Skills extends Component {
           componentInputName={this.componentInputName}
           handleInputChange={this.handleInputChange}
           addNewSkill={this.addNewSkill}
-          // changeComponentMode={this.changeComponentMode}
-          // changeSkillsMode={this.changeSkillsMode}
         />
       );
     }

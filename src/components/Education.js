@@ -31,10 +31,6 @@ class EducationHistoryRow extends Component {
 }
 
 class AddEducationForm extends Component {
-  // changeEducationMode = (e) => {
-  //   e.preventDefault();
-  //   this.props.changeEducationMode(false);
-  // };
   changeComponentMode = (e) => {
     e.preventDefault();
     this.props.changeComponentMode(this.props.componentModeName, false);
@@ -92,13 +88,13 @@ class AddEducationForm extends Component {
         ></input>
         <input
           type="text"
-          placeholder="Role"
+          placeholder="Degree"
           autoComplete="off"
           name="inputSchoolDegree"
           value={inputSchoolDegree}
           onChange={this.handleInputChange}
         ></input>
-        <button type="submit" onClick={/* this.changeEducationMode */this.changeComponentMode}>
+        <button type="submit" onClick={this.changeComponentMode}>
           Cancel
         </button>
         <button type="submit" onClick={this.addNewEducation}>
@@ -111,10 +107,9 @@ class AddEducationForm extends Component {
 
 class AddEducationBtn extends Component {
   changeComponentMode = () => this.props.changeComponentMode(this.props.componentModeName, true);
-  // changeEducationMode = () => this.props.changeEducationMode(true);
   render() {
     return (
-      <button onClick={/* this.changeEducationMode */this.changeComponentMode}>+ Education</button>
+      <button onClick={this.changeComponentMode}>+ Education</button>
     );
   }
 }
@@ -125,9 +120,6 @@ class Education extends Component {
     this.componentModeName = 'educationMode';
     this.componentInputName = 'educationComponentInput';
   }
-  // changeEducationMode = (boolean) => {
-  //   this.props.changeEducationMode(boolean);
-  // };
   changeComponentMode = (component, boolean) => {
     this.props.changeComponentMode(component, boolean);
   };
@@ -159,7 +151,6 @@ class Education extends Component {
         <AddEducationBtn
         componentModeName={this.componentModeName}
         changeComponentMode={this.changeComponentMode}
-        // changeEducationMode={this.changeEducationMode}
         />
       );
     }
@@ -173,7 +164,6 @@ class Education extends Component {
           handleInputChange={this.handleInputChange}
           addNewEducation={this.addNewEducation}
           removeEducation={this.removeEducation}
-          // changeEducationMode={this.changeEducationMode}
         />
       );
     }
