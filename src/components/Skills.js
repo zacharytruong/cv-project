@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import './Skills.css';
 
 class SkillList extends Component {
-  removeSkill = (e) => this.props.removeSkill(e.target);
+  removeClickedTarget = (e) =>
+    this.props.removeClickedTarget(e.target, this.props.target, this.props.arrName);
+  // removeWorkExperience = (e) => this.props.removeWorkExperience(e.target);
   render() {
     const { modes, skill } = this.props;
     let removeBtn;
     if (!modes.appMode.isEdit) {
       removeBtn = null;
     } else {
-      removeBtn = <span onClick={this.removeSkill}>X</span>;
+      removeBtn = <span onClick={this.removeClickedTarget/* this.removeSkill */}>X</span>;
     }
     return (
       <li>
@@ -59,23 +61,30 @@ class Skills extends Component {
     super(props);
     this.componentModeName = 'skillsMode';
     this.componentInputName = 'skillsComponentInput';
+    this.arrName = 'skillsArray';
+    this.target = 'skillContainer';
   }
   changeComponentMode = (component, boolean) => {
     this.props.changeComponentMode(component, boolean);
   };
   addNewSkill = () => this.props.addNewSkill();
-  removeSkill = (element) => this.props.removeSkill(element);
   handleInputChange = (component, componentProp, inputText) =>
-    this.props.handleInputChange(component, componentProp, inputText);
+  this.props.handleInputChange(component, componentProp, inputText);
+  removeClickedTarget = (element, target, arr) =>
+    this.props.removeClickedTarget(element, target, arr);
+  // removeWorkExperience = (element) => this.props.removeWorkExperience(element);
   render() {
     const { modes, componentsArray, inputs } = this.props;
     const skillsArray = componentsArray.skillsArray;
     const rows = skillsArray.map((skill) => (
       <SkillList
         modes={modes}
+        target={this.target}
+        arrName={this.arrName}
         skill={skill}
         key={skill.id}
-        removeSkill={this.removeSkill}
+        removeClickedTarget={this.removeClickedTarget}
+        // removeWorkExperience={this.removeWorkExperience}
       />
     ));
     let element;
@@ -104,7 +113,7 @@ class Skills extends Component {
     return (
       <div>
         <h2>Skills</h2>
-        <ul className="skillContainer">
+        <ul className={this.target}>
           {rows}
         </ul>
         {element}

@@ -316,6 +316,15 @@ class App extends React.Component {
     });
   }
 
+  removeClickedTarget = (element, target, arrName) => {
+    const index = Array.from(element.closest(target).children).indexOf(element.parentNode);
+    const tempArr = { ...this.state.componentsArray };
+    tempArr[arrName].splice(index, 1);
+    this.setState({
+      componentsArray: tempArr
+    });
+  };
+
   removeWorkExperience = (element) => {
     const index = Array.from(element.closest('.experienceContainer').children).indexOf(element.parentNode);
     const tempArr = { ...this.state.componentsArray };
@@ -370,7 +379,8 @@ class App extends React.Component {
           handleInputChange={this.handleInputChange}
           changeComponentMode={this.changeComponentMode}
           addNewExperience={this.addNewExperience}
-          removeWorkExperience={this.removeWorkExperience}
+          removeClickedTarget={this.removeClickedTarget}
+          // removeWorkExperience={this.removeWorkExperience}
         />
         <Education
           modes={modes}
@@ -379,7 +389,8 @@ class App extends React.Component {
           handleInputChange={this.handleInputChange}
           changeComponentMode={this.changeComponentMode}
           addNewEducation={this.addNewEducation}
-          removeEducation={this.removeEducation}
+          removeClickedTarget={this.removeClickedTarget}
+          // removeWorkExperience={this.removeWorkExperience}
         />
         <Skills
           modes={modes}
@@ -388,7 +399,8 @@ class App extends React.Component {
           handleInputChange={this.handleInputChange}
           changeComponentMode={this.changeComponentMode}
           addNewSkill={this.addNewSkill}
-          removeSkill={this.removeSkill}
+          removeClickedTarget={this.removeClickedTarget}
+          // removeWorkExperience={this.removeWorkExperience}
         />
       </div>
     );

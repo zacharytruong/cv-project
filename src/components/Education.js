@@ -2,14 +2,22 @@ import React, { Component } from 'react';
 import './Education.css';
 
 class EducationHistoryRow extends Component {
-  removeEducation = (e) => this.props.removeEducation(e.target);
+  removeClickedTarget = (e) =>
+    this.props.removeClickedTarget(
+      e.target,
+      this.props.target,
+      this.props.arrName
+    );
+  // removeWorkExperience = (e) => this.props.removeWorkExperience(e.target);
   render() {
     const { modes, education } = this.props;
     let button;
     if (modes.appMode.isEdit) {
-      button = <button type="submit" onClick={this.removeEducation}>
-      X
-    </button>
+      button = (
+        <button type="submit" onClick={this.removeEducation}>
+          X
+        </button>
+      );
     } else button = null;
     return (
       <div>
@@ -38,7 +46,11 @@ class AddEducationForm extends Component {
   handleInputChange = (e) => {
     let target = e.target.name;
     let inputText = e.target.value;
-    this.props.handleInputChange(this.props.componentInputName, target, inputText);
+    this.props.handleInputChange(
+      this.props.componentInputName,
+      target,
+      inputText
+    );
   };
   addNewEducation = (e) => {
     e.preventDefault();
@@ -50,7 +62,7 @@ class AddEducationForm extends Component {
       inputSchoolCity,
       inputSchoolFromYear,
       inputSchoolToYear,
-      inputSchoolDegree,
+      inputSchoolDegree
     } = this.props.educationComponentInput;
     return (
       <form>
@@ -106,11 +118,10 @@ class AddEducationForm extends Component {
 }
 
 class AddEducationBtn extends Component {
-  changeComponentMode = () => this.props.changeComponentMode(this.props.componentModeName, true);
+  changeComponentMode = () =>
+    this.props.changeComponentMode(this.props.componentModeName, true);
   render() {
-    return (
-      <button onClick={this.changeComponentMode}>+ Education</button>
-    );
+    return <button onClick={this.changeComponentMode}>+ Education</button>;
   }
 }
 
@@ -119,6 +130,8 @@ class Education extends Component {
     super(props);
     this.componentModeName = 'educationMode';
     this.componentInputName = 'educationComponentInput';
+    this.arrName = 'educationArray';
+    this.target = 'educationContainer';
   }
   changeComponentMode = (component, boolean) => {
     this.props.changeComponentMode(component, boolean);
@@ -126,20 +139,21 @@ class Education extends Component {
   handleInputChange = (component, componentProp, inputText) =>
     this.props.handleInputChange(component, componentProp, inputText);
   addNewEducation = () => this.props.addNewEducation();
-  removeEducation = (element) => this.props.removeEducation(element);
+  removeClickedTarget = (element, target, arr) =>
+    this.props.removeClickedTarget(element, target, arr);
+  // removeWorkExperience = (element) => this.props.removeWorkExperience(element);
   render() {
-    const {
-      modes,
-      componentsArray,
-      educationComponentInput,
-    } = this.props;
+    const { modes, componentsArray, educationComponentInput } = this.props;
     const educationArray = componentsArray.educationArray;
     const rows = educationArray.map((education) => (
       <EducationHistoryRow
         modes={modes}
+        target={this.target}
+        arrName={this.arrName}
         education={education}
         key={education.id}
-        removeEducation={this.removeEducation}
+        removeClickedTarget={this.removeClickedTarget}
+        // removeWorkExperience={this.removeWorkExperience}
       />
     ));
     let element;
@@ -149,8 +163,8 @@ class Education extends Component {
     if (modes.appMode.isEdit && !modes.educationMode.isEdit) {
       element = (
         <AddEducationBtn
-        componentModeName={this.componentModeName}
-        changeComponentMode={this.changeComponentMode}
+          componentModeName={this.componentModeName}
+          changeComponentMode={this.changeComponentMode}
         />
       );
     }
@@ -163,16 +177,14 @@ class Education extends Component {
           changeComponentMode={this.changeComponentMode}
           handleInputChange={this.handleInputChange}
           addNewEducation={this.addNewEducation}
-          removeEducation={this.removeEducation}
+          // removeEducation={this.removeEducation}
         />
       );
     }
     return (
       <div>
         <h2>Education</h2>
-        <ul className='educationContainer'>
-        {rows}
-        </ul>
+        <ul className={this.target}>{rows}</ul>
         {element}
       </div>
     );

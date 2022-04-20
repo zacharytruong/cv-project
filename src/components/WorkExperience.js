@@ -2,14 +2,21 @@ import React, { Component } from 'react';
 import './WorkExperience.css';
 
 class ExperienceHistoryRow extends Component {
-  removeWorkExperience = (e) => this.props.removeWorkExperience(e.target);
+  removeClickedTarget = (e) =>
+    this.props.removeClickedTarget(e.target, this.props.target, this.props.arrName);
+  // removeWorkExperience = (e) => this.props.removeWorkExperience(e.target);
   render() {
     const { modes, work } = this.props;
     let button;
     if (modes.appMode.isEdit) {
-      button = <button type="submit" onClick={this.removeWorkExperience}>
-      X
-    </button>;
+      button = (
+        <button
+          type="submit"
+          onClick={this.removeClickedTarget /* this.removeWorkExperience */}
+        >
+          X
+        </button>
+      );
     } else button = null;
     return (
       <div>
@@ -39,7 +46,11 @@ class AddExperienceForm extends Component {
   handleInputChange = (e) => {
     let target = e.target.name;
     let inputText = e.target.value;
-    this.props.handleInputChange(this.props.componentInputName, target, inputText);
+    this.props.handleInputChange(
+      this.props.componentInputName,
+      target,
+      inputText
+    );
   };
   addNewExperience = (e) => {
     e.preventDefault();
@@ -116,11 +127,10 @@ class AddExperienceForm extends Component {
 }
 
 class AddExperienceBtn extends Component {
-  changeComponentMode = () => this.props.changeComponentMode(this.props.componentModeName, true);
+  changeComponentMode = () =>
+    this.props.changeComponentMode(this.props.componentModeName, true);
   render() {
-    return (
-      <button onClick={this.changeComponentMode}>+ Experience</button>
-    );
+    return <button onClick={this.changeComponentMode}>+ Experience</button>;
   }
 }
 
@@ -129,6 +139,8 @@ class WorkExperience extends Component {
     super(props);
     this.componentModeName = 'workExperienceMode';
     this.componentInputName = 'workExperienceComponentInput';
+    this.arrName = 'workExperienceArray';
+    this.target = 'experienceContainer';
   }
   changeComponentMode = (component, boolean) => {
     this.props.changeComponentMode(component, boolean);
@@ -136,20 +148,21 @@ class WorkExperience extends Component {
   handleInputChange = (component, componentProp, inputText) =>
     this.props.handleInputChange(component, componentProp, inputText);
   addNewExperience = () => this.props.addNewExperience();
-  removeWorkExperience = (element) => this.props.removeWorkExperience(element);
+  removeClickedTarget = (element, target, arr) =>
+    this.props.removeClickedTarget(element, target, arr);
+  // removeWorkExperience = (element) => this.props.removeWorkExperience(element);
   render() {
-    const {
-      modes,
-      workExperienceComponentInput,
-      componentsArray,
-    } = this.props;
+    const { modes, workExperienceComponentInput, componentsArray } = this.props;
     const workExperienceArray = componentsArray.workExperienceArray;
     const rows = workExperienceArray.map((work) => (
       <ExperienceHistoryRow
         modes={modes}
+        target={this.target}
+        arrName={this.arrName}
         work={work}
         key={work.id}
-        removeWorkExperience={this.removeWorkExperience}
+        removeClickedTarget={this.removeClickedTarget}
+        // removeWorkExperience={this.removeWorkExperience}
       />
     ));
     let element;
@@ -159,8 +172,8 @@ class WorkExperience extends Component {
     if (modes.appMode.isEdit && !modes.workExperienceMode.isEdit) {
       element = (
         <AddExperienceBtn
-        componentModeName={this.componentModeName}
-        changeComponentMode={this.changeComponentMode}
+          componentModeName={this.componentModeName}
+          changeComponentMode={this.changeComponentMode}
         />
       );
     }
@@ -173,16 +186,15 @@ class WorkExperience extends Component {
           changeComponentMode={this.changeComponentMode}
           handleInputChange={this.handleInputChange}
           addNewExperience={this.addNewExperience}
-          removeWorkExperience={this.removeWorkExperience}
+          // removeClickedTarget={this.removeClickedTarget}
+          // removeWorkExperience={this.removeWorkExperience}
         />
       );
     }
     return (
       <div>
         <h2>Experiences</h2>
-        <ul className='experienceContainer'>
-        {rows}
-        </ul>
+        <ul className={this.target}>{rows}</ul>
         {element}
       </div>
     );
