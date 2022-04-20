@@ -1,0 +1,13 @@
+main {
+  min-height: calc(100vh - 30rem);
+  max-width: 70rem;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+@media only screen and (min-width: 70rem) {
+  main {
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+}
