@@ -4,14 +4,13 @@ import './Skills.css';
 class SkillList extends Component {
   removeClickedTarget = (e) =>
     this.props.removeClickedTarget(e.target, this.props.target, this.props.arrName);
-  // removeWorkExperience = (e) => this.props.removeWorkExperience(e.target);
   render() {
     const { modes, skill } = this.props;
     let removeBtn;
     if (!modes.appMode.isEdit) {
       removeBtn = null;
     } else {
-      removeBtn = <span onClick={this.removeClickedTarget/* this.removeSkill */}>X</span>;
+      removeBtn = <span onClick={this.removeClickedTarget}>X</span>;
     }
     return (
       <li>
@@ -72,7 +71,6 @@ class Skills extends Component {
   this.props.handleInputChange(component, componentProp, inputText);
   removeClickedTarget = (element, target, arr) =>
     this.props.removeClickedTarget(element, target, arr);
-  // removeWorkExperience = (element) => this.props.removeWorkExperience(element);
   render() {
     const { modes, componentsArray, inputs } = this.props;
     const skillsArray = componentsArray.skillsArray;
@@ -84,7 +82,6 @@ class Skills extends Component {
         skill={skill}
         key={skill.id}
         removeClickedTarget={this.removeClickedTarget}
-        // removeWorkExperience={this.removeWorkExperience}
       />
     ));
     let element;

@@ -8,13 +8,12 @@ class EducationHistoryRow extends Component {
       this.props.target,
       this.props.arrName
     );
-  // removeWorkExperience = (e) => this.props.removeWorkExperience(e.target);
   render() {
     const { modes, education } = this.props;
     let button;
     if (modes.appMode.isEdit) {
       button = (
-        <button type="submit" onClick={this.removeEducation}>
+        <button type="submit" onClick={this.removeClickedTarget}>
           X
         </button>
       );
@@ -141,7 +140,6 @@ class Education extends Component {
   addNewEducation = () => this.props.addNewEducation();
   removeClickedTarget = (element, target, arr) =>
     this.props.removeClickedTarget(element, target, arr);
-  // removeWorkExperience = (element) => this.props.removeWorkExperience(element);
   render() {
     const { modes, componentsArray, educationComponentInput } = this.props;
     const educationArray = componentsArray.educationArray;
@@ -153,7 +151,6 @@ class Education extends Component {
         education={education}
         key={education.id}
         removeClickedTarget={this.removeClickedTarget}
-        // removeWorkExperience={this.removeWorkExperience}
       />
     ));
     let element;
@@ -177,7 +174,6 @@ class Education extends Component {
           changeComponentMode={this.changeComponentMode}
           handleInputChange={this.handleInputChange}
           addNewEducation={this.addNewEducation}
-          // removeEducation={this.removeEducation}
         />
       );
     }

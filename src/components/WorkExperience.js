@@ -4,7 +4,6 @@ import './WorkExperience.css';
 class ExperienceHistoryRow extends Component {
   removeClickedTarget = (e) =>
     this.props.removeClickedTarget(e.target, this.props.target, this.props.arrName);
-  // removeWorkExperience = (e) => this.props.removeWorkExperience(e.target);
   render() {
     const { modes, work } = this.props;
     let button;
@@ -12,7 +11,7 @@ class ExperienceHistoryRow extends Component {
       button = (
         <button
           type="submit"
-          onClick={this.removeClickedTarget /* this.removeWorkExperience */}
+          onClick={this.removeClickedTarget}
         >
           X
         </button>
@@ -150,7 +149,6 @@ class WorkExperience extends Component {
   addNewExperience = () => this.props.addNewExperience();
   removeClickedTarget = (element, target, arr) =>
     this.props.removeClickedTarget(element, target, arr);
-  // removeWorkExperience = (element) => this.props.removeWorkExperience(element);
   render() {
     const { modes, workExperienceComponentInput, componentsArray } = this.props;
     const workExperienceArray = componentsArray.workExperienceArray;
@@ -162,7 +160,6 @@ class WorkExperience extends Component {
         work={work}
         key={work.id}
         removeClickedTarget={this.removeClickedTarget}
-        // removeWorkExperience={this.removeWorkExperience}
       />
     ));
     let element;
@@ -186,8 +183,6 @@ class WorkExperience extends Component {
           changeComponentMode={this.changeComponentMode}
           handleInputChange={this.handleInputChange}
           addNewExperience={this.addNewExperience}
-          // removeClickedTarget={this.removeClickedTarget}
-          // removeWorkExperience={this.removeWorkExperience}
         />
       );
     }

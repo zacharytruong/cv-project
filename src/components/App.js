@@ -317,36 +317,9 @@ class App extends React.Component {
   }
 
   removeClickedTarget = (element, target, arrName) => {
-    const index = Array.from(element.closest(target).children).indexOf(element.parentNode);
+    const index = Array.from(element.closest(`.${target}`).children).indexOf(element.parentNode);
     const tempArr = { ...this.state.componentsArray };
     tempArr[arrName].splice(index, 1);
-    this.setState({
-      componentsArray: tempArr
-    });
-  };
-
-  removeWorkExperience = (element) => {
-    const index = Array.from(element.closest('.experienceContainer').children).indexOf(element.parentNode);
-    const tempArr = { ...this.state.componentsArray };
-    tempArr.workExperienceArray.splice(index, 1);
-    this.setState({
-      componentsArray: tempArr
-    });
-  };
-
-  removeEducation = (element) => {
-    const index = Array.from(element.closest('.educationContainer').children).indexOf(element.parentNode);
-    const tempArr = { ...this.state.componentsArray };
-    tempArr.educationArray.splice(index, 1);
-    this.setState({
-      componentsArray: tempArr
-    });
-  };
-
-  removeSkill = (element) => {
-    const index = Array.from(element.closest('.skillContainer').children).indexOf(element.parentNode);
-    const tempArr = { ...this.state.componentsArray };
-    tempArr.skillsArray.splice(index, 1);
     this.setState({
       componentsArray: tempArr
     });
@@ -380,7 +353,6 @@ class App extends React.Component {
           changeComponentMode={this.changeComponentMode}
           addNewExperience={this.addNewExperience}
           removeClickedTarget={this.removeClickedTarget}
-          // removeWorkExperience={this.removeWorkExperience}
         />
         <Education
           modes={modes}
@@ -390,7 +362,6 @@ class App extends React.Component {
           changeComponentMode={this.changeComponentMode}
           addNewEducation={this.addNewEducation}
           removeClickedTarget={this.removeClickedTarget}
-          // removeWorkExperience={this.removeWorkExperience}
         />
         <Skills
           modes={modes}
@@ -400,7 +371,6 @@ class App extends React.Component {
           changeComponentMode={this.changeComponentMode}
           addNewSkill={this.addNewSkill}
           removeClickedTarget={this.removeClickedTarget}
-          // removeWorkExperience={this.removeWorkExperience}
         />
       </div>
     );
