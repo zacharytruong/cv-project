@@ -92,7 +92,7 @@ class BasicUserInfo extends Component {
       }
     }
     return (
-      <div>
+      <div className='col colLeft'>
         <ul>{rows}</ul>
       </div>
     );
@@ -130,7 +130,7 @@ class ExtendedUserInfo extends Component {
       }
     }
     return (
-      <div>
+      <div className='col colRight'>
         <ul>{rows}</ul>
       </div>
     );
@@ -148,7 +148,7 @@ class UserInfo extends Component {
     const { modes, inputs, textDisplay } = this.props;
 
     return (
-      <div className="UserInfoContainer">
+      <div className="container userInfo">
         <BasicUserInfo
           modes={modes}
           inputs={inputs}

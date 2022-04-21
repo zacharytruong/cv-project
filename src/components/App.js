@@ -25,58 +25,9 @@ class App extends React.Component {
         }
       },
       componentsArray: {
-        workExperienceArray: [
-          {
-            id: uniqid(),
-            textCompanyName: 'Side',
-            textCompanyCity: 'SF',
-            textCompanyFromYear: '2019',
-            textCompanyToYear: 'Present',
-            textCompanyRole: 'WSE',
-            textCompanyRoleDescription: 'Build websites.'
-          },
-          {
-            id: uniqid(),
-            textCompanyName: 'OBM',
-            textCompanyCity: 'Cleveland',
-            textCompanyFromYear: '2015',
-            textCompanyToYear: '2017',
-            textCompanyRole: 'IT',
-            textCompanyRoleDescription: 'Build IT.'
-          }
-        ],
-        educationArray: [
-          {
-            id: uniqid(),
-            textSchoolName: 'CTU',
-            textSchoolCity: 'Colorado',
-            textSchoolFromYear: '2017',
-            textSchoolToYear: '2021',
-            textSchoolDegree: 'PHD'
-          },
-          {
-            id: uniqid(),
-            textSchoolName: 'ITT',
-            textSchoolCity: 'Cleveland',
-            textSchoolFromYear: '2011',
-            textSchoolToYear: '2015',
-            textSchoolDegree: 'BCS'
-          }
-        ],
-        skillsArray: [
-          {
-            id: uniqid(),
-            textSkillName: 'html'
-          },
-          {
-            id: uniqid(),
-            textSkillName: 'css'
-          },
-          {
-            id: uniqid(),
-            textSkillName: 'javascript'
-          }
-        ]
+        workExperienceArray: [],
+        educationArray: [],
+        skillsArray: []
       },
       inputs: {
         userInfoComponentInput: {
@@ -297,9 +248,7 @@ class App extends React.Component {
     const tempArr = { ...this.state.componentsArray };
     const tempModes = { ...this.state.modes };
     const tempInputs = { ...this.state.inputs };
-    const {
-      inputSkillName
-    } = this.state.inputs.skillsComponentInput;
+    const { inputSkillName } = this.state.inputs.skillsComponentInput;
     const skill = {
       id: uniqid(),
       textSkillName: inputSkillName
@@ -314,10 +263,12 @@ class App extends React.Component {
       modes: tempModes,
       inputs: tempInputs
     });
-  }
+  };
 
   removeClickedTarget = (element, target, arrName) => {
-    const index = Array.from(element.closest(`.${target}`).children).indexOf(element.parentNode);
+    const index = Array.from(element.closest(`.${target}`).children).indexOf(
+      element.parentNode
+    );
     const tempArr = { ...this.state.componentsArray };
     tempArr[arrName].splice(index, 1);
     this.setState({
@@ -328,7 +279,7 @@ class App extends React.Component {
   render() {
     const { modes, componentsArray, inputs, textDisplay } = this.state;
     return (
-      <div className="appContainer">
+      <div>
         <nav>
           <button onClick={() => this.changeAppMode('appMode', true)}>
             EDIT MODE
@@ -337,41 +288,46 @@ class App extends React.Component {
             VIEW MODE
           </button>
         </nav>
-        <UserInfo
-          modes={modes}
-          inputs={inputs.userInfoComponentInput.inputUserInfo}
-          textDisplay={textDisplay}
-          changeInfoRowToEditMode={this.changeInfoRowToEditMode}
-          handleInputChange={this.handleInputChange}
-          handleUserInfoUpdateBtn={this.handleUserInfoUpdateBtn}
-        />
-        <WorkExperience
-          modes={modes}
-          componentsArray={componentsArray}
-          workExperienceComponentInput={inputs.workExperienceComponentInput}
-          handleInputChange={this.handleInputChange}
-          changeComponentMode={this.changeComponentMode}
-          addNewExperience={this.addNewExperience}
-          removeClickedTarget={this.removeClickedTarget}
-        />
-        <Education
-          modes={modes}
-          componentsArray={componentsArray}
-          educationComponentInput={inputs.educationComponentInput}
-          handleInputChange={this.handleInputChange}
-          changeComponentMode={this.changeComponentMode}
-          addNewEducation={this.addNewEducation}
-          removeClickedTarget={this.removeClickedTarget}
-        />
-        <Skills
-          modes={modes}
-          componentsArray={componentsArray}
-          inputs={inputs.skillsComponentInput.inputSkillName}
-          handleInputChange={this.handleInputChange}
-          changeComponentMode={this.changeComponentMode}
-          addNewSkill={this.addNewSkill}
-          removeClickedTarget={this.removeClickedTarget}
-        />
+        <div className="appContainer">
+          <UserInfo
+            modes={modes}
+            inputs={inputs.userInfoComponentInput.inputUserInfo}
+            textDisplay={textDisplay}
+            changeInfoRowToEditMode={this.changeInfoRowToEditMode}
+            handleInputChange={this.handleInputChange}
+            handleUserInfoUpdateBtn={this.handleUserInfoUpdateBtn}
+          />
+          <hr />
+          <WorkExperience
+            modes={modes}
+            componentsArray={componentsArray}
+            workExperienceComponentInput={inputs.workExperienceComponentInput}
+            handleInputChange={this.handleInputChange}
+            changeComponentMode={this.changeComponentMode}
+            addNewExperience={this.addNewExperience}
+            removeClickedTarget={this.removeClickedTarget}
+          />
+          <hr />
+          <Education
+            modes={modes}
+            componentsArray={componentsArray}
+            educationComponentInput={inputs.educationComponentInput}
+            handleInputChange={this.handleInputChange}
+            changeComponentMode={this.changeComponentMode}
+            addNewEducation={this.addNewEducation}
+            removeClickedTarget={this.removeClickedTarget}
+          />
+          <hr />
+          <Skills
+            modes={modes}
+            componentsArray={componentsArray}
+            inputs={inputs.skillsComponentInput.inputSkillName}
+            handleInputChange={this.handleInputChange}
+            changeComponentMode={this.changeComponentMode}
+            addNewSkill={this.addNewSkill}
+            removeClickedTarget={this.removeClickedTarget}
+          />
+        </div>
       </div>
     );
   }

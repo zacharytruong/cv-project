@@ -3,18 +3,26 @@ import './Skills.css';
 
 class SkillList extends Component {
   removeClickedTarget = (e) =>
-    this.props.removeClickedTarget(e.target, this.props.target, this.props.arrName);
+    this.props.removeClickedTarget(
+      e.target,
+      this.props.target,
+      this.props.arrName
+    );
   render() {
     const { modes, skill } = this.props;
     let removeBtn;
     if (!modes.appMode.isEdit) {
       removeBtn = null;
     } else {
-      removeBtn = <span onClick={this.removeClickedTarget}>X</span>;
+      removeBtn = (
+        <span onClick={this.removeClickedTarget} className="redX">
+          X
+        </span>
+      );
     }
     return (
-      <li>
-        {skill.textSkillName} {removeBtn}
+      <li className='skill'>
+        <span>{skill.textSkillName}</span> {removeBtn}
       </li>
     );
   }
@@ -24,7 +32,11 @@ class AddSkillForm extends Component {
   handleInputChange = (e) => {
     let target = e.target.name;
     let inputText = e.target.value;
-    this.props.handleInputChange(this.props.componentInputName, target, inputText);
+    this.props.handleInputChange(
+      this.props.componentInputName,
+      target,
+      inputText
+    );
   };
   addNewSkill = (e) => {
     e.preventDefault();
@@ -49,7 +61,8 @@ class AddSkillForm extends Component {
 }
 
 class AddSkillBtn extends Component {
-  changeComponentMode = () => this.props.changeComponentMode(this.props.componentModeName, true);
+  changeComponentMode = () =>
+    this.props.changeComponentMode(this.props.componentModeName, true);
   render() {
     return <button onClick={this.changeComponentMode}>+ Skill</button>;
   }
@@ -61,14 +74,14 @@ class Skills extends Component {
     this.componentModeName = 'skillsMode';
     this.componentInputName = 'skillsComponentInput';
     this.arrName = 'skillsArray';
-    this.target = 'skillContainer';
+    this.target = 'skillsContainer';
   }
   changeComponentMode = (component, boolean) => {
     this.props.changeComponentMode(component, boolean);
   };
   addNewSkill = () => this.props.addNewSkill();
   handleInputChange = (component, componentProp, inputText) =>
-  this.props.handleInputChange(component, componentProp, inputText);
+    this.props.handleInputChange(component, componentProp, inputText);
   removeClickedTarget = (element, target, arr) =>
     this.props.removeClickedTarget(element, target, arr);
   render() {
@@ -91,8 +104,8 @@ class Skills extends Component {
     if (modes.appMode.isEdit && !modes.skillsMode.isEdit) {
       element = (
         <AddSkillBtn
-        componentModeName={this.componentModeName}
-        changeComponentMode={this.changeComponentMode}
+          componentModeName={this.componentModeName}
+          changeComponentMode={this.changeComponentMode}
         />
       );
     }
@@ -108,11 +121,9 @@ class Skills extends Component {
       );
     }
     return (
-      <div>
+      <div className="container skills">
         <h2>Skills</h2>
-        <ul className={this.target}>
-          {rows}
-        </ul>
+        <ul className={this.target}>{rows}</ul>
         {element}
       </div>
     );

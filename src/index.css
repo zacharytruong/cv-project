@@ -4,6 +4,10 @@ html {
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+*:focus {
+  outline:none !important
 }
 h1,
 h2,
@@ -11,7 +15,48 @@ h3,
 h4 {
   font-family: 'Roboto Mono', monospace;
 }
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.4rem;
+}
+h3 {
+  font-size: 2rem;
+}
 p {
   font-family: 'Merriweather', serif;
+  font-size: 1.8rem;
+}
+li {
   font-size: 1.6rem;
+  font-family: 'Merriweather', serif;
+}
+
+a {
+  text-decoration: none;
+  color:#CD5C5C;
+}
+
+button {
+  font-size: 2rem;
+  display:inline-block;
+  padding: 1rem 1.5rem;
+  border:0.1em solid #333333;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.25em;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  background-color:#FFFFFF;
+  color:#000000;
+  text-align:center;
+  transition: all 0.2s;
+  font-family: 'Merriweather', serif;
+}
+button:hover {
+  background-color: #333333;
+  color:#FFFFFF;
+  border:0.1em solid #FFFFFF;
+  cursor: pointer;
 }

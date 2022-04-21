@@ -1,0 +1,66 @@
+.skills {
+  display: flex;
+  flex-direction: column;
+}
+
+.skills button {
+  align-self: start; 
+}
+
+.skills h2 {
+  font-size: 3rem;
+}
+
+.skills p {
+  line-height: 1.5;
+}
+
+.skillsContainer {
+  display: flex;
+  padding: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.skillsContainer button {
+  margin: 1rem 0;
+  border: 0.1em solid #CD5C5C;
+  background: #FFF;
+  color: #CD5C5C;
+}
+
+.skillsContainer button:hover {
+  border: 0.1em solid #FFF;
+  background: #CD5C5C;
+  color: #FFF;
+}
+
+.skillsContainer .schoolName {
+  font-style: italic;
+}
+
+.skillsContainer li {
+  font-size: 1.6rem;
+  display: flex;
+  align-self: start; 
+  padding: 1rem 2rem;
+  justify-content: space-between;
+  border: 0.1rem solid #c3c3c3;
+  border-radius: .5rem;
+  margin: .5rem;
+}
+
+.skillsContainer .redX {
+  color: #CD5C5C;
+  text-align: right;
+  padding: 0 1rem;
+  border: .05rem solid #CD5C5C;
+  margin-left: 1rem;
+  border-radius: .5rem;
+}
+
+.skillsContainer .redX:hover {
+  color: #FFF;
+  border: .05rem solid #FFF;
+  background: #CD5C5C;
+  cursor: pointer;
+}

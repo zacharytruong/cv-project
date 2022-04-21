@@ -20,7 +20,7 @@ class ExperienceHistoryRow extends Component {
     return (
       <div>
         <div>
-          <p>
+          <p className='companyName'>
             {work.textCompanyName}, {work.textCompanyCity}
           </p>
         </div>
@@ -187,7 +187,7 @@ class WorkExperience extends Component {
       );
     }
     return (
-      <div>
+      <div className='container experience'>
         <h2>Experiences</h2>
         <ul className={this.target}>{rows}</ul>
         {element}
