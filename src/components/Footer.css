@@ -1,0 +1,14 @@
+footer {
+  text-align: center;
+  min-height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #333333;
+  color: #FFF;
+}
+
+footer a:hover {
+  color: #c33c3c;
+}
