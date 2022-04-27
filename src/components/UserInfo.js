@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './UserInfo.css';
+import './../styles/UserInfo.css';
 
 class InfoRowForm extends Component {
   handleInputChange = (e) => {

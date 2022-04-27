@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Education.css';
+import './../styles/Education.css';
 
 class EducationHistoryRow extends Component {
   removeClickedTarget = (e) =>

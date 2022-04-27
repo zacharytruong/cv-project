@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './WorkExperience.css';
+import './../styles/WorkExperience.css';
 
 class ExperienceHistoryRow extends Component {
   removeClickedTarget = (e) =>
