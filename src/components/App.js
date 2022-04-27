@@ -426,23 +426,43 @@ const App = () => {
     });
   };
 
-  // const changeAllModesToNonEditExceptApp = () => {
-  //   for (const property in modes) {
-  //     if (property !== 'appMode') {
-  //     }
-  //   }
-  // };
+  const changeAllModesToNonEditExceptApp = () => {
+    for (const property in modes) {
+      if (property !== 'appMode') {
+        modes[property].isEdit = false;
+      }
+    }
+    return modes;
+  };
 
-  // const changeInfoRowToEditMode = (element) => {
-  //   changeAllModesToNonEditExceptApp();
-  //   const target = element.closest('li').getAttribute('datakey');
-  //   const tempObj = textDisplay.textUserInfoComponent;
-  //   for (const info in tempObj) {
-  //     target === info
-  //       ? setTextDisplay((tempObj[target].isEdit = true))
-  //       : setTextDisplay((tempObj[target].isEdit = false));
-  //   }
-  // };
+  const changeInfoRowToEditMode = (element) => {
+    changeAllModesToNonEditExceptApp();
+    const target = element.closest('li').getAttribute('datakey');
+    const tempObj = textDisplay.textUserInfoComponent;
+    for (const info in tempObj) {
+      target === info
+        ? setTextDisplay((tempObj[target].isEdit = true))
+        : setTextDisplay((tempObj[target].isEdit = false));
+    }
+  };
+
+  const handleInputChange = (component, componentProp, inputText) => {
+    setInputs(() => {
+      inputs[component][componentProp] = inputText;
+      return inputs;
+    });
+  };
+
+  const handleUserInfoUpdateBtn = (element) => {
+    const datakey = element.closest('form').getAttribute('datakey');
+    const textUserInfoComponent = textDisplay.textUserInfoComponent;
+    const inputUserInfo = inputs.userInfoComponentInput.inputUserInfo;
+    textUserInfoComponent[datakey].text = inputUserInfo;
+    textUserInfoComponent[datakey].isEdit = false;
+    inputs.userInfoComponentInput.inputUserInfo = '';
+    setTextDisplay(textDisplay);
+    setInputs(inputs);
+  };
 
   return (
     <div>
@@ -459,9 +479,9 @@ const App = () => {
           modes={modes}
           inputs={inputs.userInfoComponentInput.inputUserInfo}
           textDisplay={textDisplay}
-          // changeInfoRowToEditMode={changeInfoRowToEditMode}
-          // handleInputChange={this.handleInputChange}
-          // handleUserInfoUpdateBtn={this.handleUserInfoUpdateBtn}
+          changeInfoRowToEditMode={changeInfoRowToEditMode}
+          handleInputChange={handleInputChange}
+          handleUserInfoUpdateBtn={handleUserInfoUpdateBtn}
         />
         <hr />
         {/* <WorkExperience
