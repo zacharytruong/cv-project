@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import uniqid from 'uniqid';
 import UserInfo from './UserInfo';
 import WorkExperience from './WorkExperience';
@@ -334,59 +334,165 @@ import './../styles/App.css';
 // }
 
 const App = () => {
-  const [modes, setModes] = useState();
-  const [componentsArray, setComponenetsArray] = useState();
-  const [inputs, setInputs] = useState();
-  const [textDisplay, setTextDisplay] = useState();
+  const [modes, setModes] = useState({
+    appMode: {
+      isEdit: true
+    },
+    workExperienceMode: {
+      isEdit: false
+    },
+    educationMode: {
+      isEdit: false
+    },
+    skillsMode: {
+      isEdit: false
+    }
+  });
+
+  const [componentsArray, setComponenetsArray] = useState({
+    workExperienceArray: [],
+    educationArray: [],
+    skillsArray: []
+  });
+
+  const [inputs, setInputs] = useState({
+    userInfoComponentInput: {
+      inputUserInfo: ''
+    },
+    workExperienceComponentInput: {
+      inputCompanyName: '',
+      inputCompanyCity: '',
+      inputCompanyFrom: '',
+      inputCompanyTo: '',
+      inputCompanyRole: '',
+      inputCompanyJobDescription: ''
+    },
+    educationComponentInput: {
+      inputSchool: '',
+      inputSchoolCity: '',
+      inputSchoolFromYear: '',
+      inputSchoolToYear: '',
+      inputSchoolDegree: ''
+    },
+    skillsComponentInput: {
+      inputSkillName: ''
+    }
+  });
+
+  const [textDisplay, setTextDisplay] = useState({
+    textUserInfoComponent: {
+      textFirstName: {
+        text: 'First Name',
+        id: uniqid(),
+        isEdit: false
+      },
+      textLastName: {
+        text: 'Last Name',
+        id: uniqid(),
+        isEdit: false
+      },
+      textAddress1: {
+        text: 'Address 1',
+        id: uniqid(),
+        isEdit: false
+      },
+      textAddress2: {
+        text: 'Address 2',
+        id: uniqid(),
+        isEdit: false
+      },
+      textPhone: {
+        text: '☎️',
+        id: uniqid(),
+        isEdit: false
+      },
+      textEmail: {
+        text: '📧',
+        id: uniqid(),
+        isEdit: false
+      },
+      textGithub: {
+        text: '❤️ (URL):',
+        id: uniqid(),
+        isEdit: false
+      }
+    }
+  });
+
+  const changeAppMode = (component, boolean) => {
+    setModes(() => {
+      modes[component].isEdit = boolean;
+      return modes;
+    });
+  };
+
+  // const changeAllModesToNonEditExceptApp = () => {
+  //   for (const property in modes) {
+  //     if (property !== 'appMode') {
+  //     }
+  //   }
+  // };
+
+  // const changeInfoRowToEditMode = (element) => {
+  //   changeAllModesToNonEditExceptApp();
+  //   const target = element.closest('li').getAttribute('datakey');
+  //   const tempObj = textDisplay.textUserInfoComponent;
+  //   for (const info in tempObj) {
+  //     target === info
+  //       ? setTextDisplay((tempObj[target].isEdit = true))
+  //       : setTextDisplay((tempObj[target].isEdit = false));
+  //   }
+  // };
+
   return (
     <div>
       <nav>
-        <button /* onClick={() => changeAppMode('appMode', true)} */>
+        <button onClick={changeAppMode.bind(this, 'appMode', true)}>
           EDIT MODE
         </button>
-        <button /* onClick={() => changeAppMode('appMode', false)} */>
+        <button onClick={changeAppMode.bind(this, 'appMode', false)}>
           VIEW MODE
         </button>
       </nav>
       <div className="appContainer">
         <UserInfo
-          // modes={modes}
-          // inputs={inputs.userInfoComponentInput.inputUserInfo}
-          // textDisplay={textDisplay}
-          // changeInfoRowToEditMode={this.changeInfoRowToEditMode}
+          modes={modes}
+          inputs={inputs.userInfoComponentInput.inputUserInfo}
+          textDisplay={textDisplay}
+          // changeInfoRowToEditMode={changeInfoRowToEditMode}
           // handleInputChange={this.handleInputChange}
           // handleUserInfoUpdateBtn={this.handleUserInfoUpdateBtn}
         />
         <hr />
-        <WorkExperience
-          // modes={modes}
-          // componentsArray={componentsArray}
-          // workExperienceComponentInput={inputs.workExperienceComponentInput}
-          // handleInputChange={this.handleInputChange}
-          // changeComponentMode={this.changeComponentMode}
-          // addNewExperience={this.addNewExperience}
-          // removeClickedTarget={this.removeClickedTarget}
-        />
+        {/* <WorkExperience
+        modes={modes}
+        componentsArray={componentsArray}
+        workExperienceComponentInput={inputs.workExperienceComponentInput}
+        handleInputChange={this.handleInputChange}
+        changeComponentMode={this.changeComponentMode}
+        addNewExperience={this.addNewExperience}
+        removeClickedTarget={this.removeClickedTarget}
+        /> */}
         <hr />
-        <Education
-          // modes={modes}
-          // componentsArray={componentsArray}
-          // educationComponentInput={inputs.educationComponentInput}
-          // handleInputChange={this.handleInputChange}
-          // changeComponentMode={this.changeComponentMode}
-          // addNewEducation={this.addNewEducation}
-          // removeClickedTarget={this.removeClickedTarget}
-        />
+        {/* <Education
+        modes={modes}
+        componentsArray={componentsArray}
+        educationComponentInput={inputs.educationComponentInput}
+        handleInputChange={this.handleInputChange}
+        changeComponentMode={this.changeComponentMode}
+        addNewEducation={this.addNewEducation}
+        removeClickedTarget={this.removeClickedTarget}
+        /> */}
         <hr />
-        <Skills
-          // modes={modes}
-          // componentsArray={componentsArray}
-          // inputs={inputs.skillsComponentInput.inputSkillName}
-          // handleInputChange={this.handleInputChange}
-          // changeComponentMode={this.changeComponentMode}
-          // addNewSkill={this.addNewSkill}
-          // removeClickedTarget={this.removeClickedTarget}
-        />
+        {/* <Skills
+        modes={modes}
+        componentsArray={componentsArray}
+        inputs={inputs.skillsComponentInput.inputSkillName}
+        handleInputChange={this.handleInputChange}
+        changeComponentMode={this.changeComponentMode}
+        addNewSkill={this.addNewSkill}
+        removeClickedTarget={this.removeClickedTarget}
+        /> */}
       </div>
     </div>
   );
