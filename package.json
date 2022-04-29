@@ -39,8 +39,8 @@
       "last 1 safari version"
     ]
   },
+  "homepage": "http://zacharytruong.github.io/cv-project",
   "devDependencies": {
     "github-pages": "^3.0.2"
-  },
-  "homepage": "http://zacharytruong.github.io/cv-project"
+  }
 }
