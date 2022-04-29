@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
 import './../styles/WorkExperience.css';
 
 const ExperienceHistoryRow = (props) => {
@@ -54,8 +55,13 @@ const AddExperienceForm = (props) => {
     e.preventDefault();
     props.addNewExperience();
   };
+  const formRef = useRef();
+  const formEle = gsap.utils.selector(formRef);
+  useEffect(() => {
+    gsap.fromTo([formEle('input'), formEle('textarea')], { scaleX: 0 }, { scaleX: 1, duration: 0.35, stagger: .15 });
+  }, []);
   return (
-    <form>
+    <form ref={formRef}>
       <input
         type="text"
         placeholder="Company Name"

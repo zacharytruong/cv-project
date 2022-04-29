@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
 import './../styles/Education.css';
 
 const EducationHistoryRow = (props) => {
@@ -54,8 +55,14 @@ const AddEducationForm = (props) => {
     props.addNewEducation();
   };
 
+  const formRef = useRef();
+  const formEle = gsap.utils.selector(formRef);
+  useEffect(() => {
+    gsap.fromTo([formEle('input')], { scaleX: 0 }, { scaleX: 1, duration: 0.35, stagger: .15 });
+  }, []);
+
   return (
-    <form>
+    <form ref={formRef}>
       <input
         type="text"
         placeholder="School Name"

@@ -10,14 +10,4 @@ header {
 
 .heroLogo {
   height: 5rem;
-  animation: logo-spin 10s infinite linear;
-}
-
-@keyframes logo-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }

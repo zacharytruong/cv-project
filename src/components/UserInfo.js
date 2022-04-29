@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
 import './../styles/UserInfo.css';
 
 const InfoRowForm = (props) => {
@@ -9,13 +10,19 @@ const InfoRowForm = (props) => {
       'inputUserInfo',
       e.target.value
     );
-  }
+  };
   const updateUserInfoOnUpdate = (e) => {
     e.preventDefault();
-    handleUserInfoUpdateBtn( e.target);
-  }
+    handleUserInfoUpdateBtn(e.target);
+  };
+  const formRef = useRef();
+  const formEle = gsap.utils.selector(formRef);
+  useEffect(() => {
+    gsap.fromTo(formEle('input'), { scaleX: 0 }, { scaleX: 1, duration: .5 });
+  }, []);
+
   return (
-    <form datakey={info}>
+    <form datakey={info} ref={formRef}>
       <input
         type="text"
         autoComplete="off"
@@ -39,10 +46,6 @@ const InfoRow = (props, e) => {
     value,
     info
   } = props;
-
-  useEffect(() => {
-    
-  }, [modes])
 
   let element;
   if (modes.appMode.isEdit) {

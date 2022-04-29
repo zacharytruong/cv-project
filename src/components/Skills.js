@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
 import './../styles/Skills.css';
 
 const SkillList = (props) => {
@@ -33,8 +34,14 @@ const AddSkillForm = (props) => {
     props.addNewSkill();
   };
 
+  const formRef = useRef();
+  const formEle = gsap.utils.selector(formRef);
+  useEffect(() => {
+    gsap.fromTo(formEle('input'), { scaleX: 0 }, { scaleX: 1, duration: .5 });
+  }, []);
+
   return (
-    <form>
+    <form ref={formRef}>
       <input
         type="text"
         autoComplete="off"
