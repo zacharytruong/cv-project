@@ -11,4 +11,4 @@ cd cv-project
 npm install
 npm start
 ```
-Live Demo: https://friendlychat-5f448.web.app/
+Live Demo: https://zacharytruong.github.io/cv-project/
